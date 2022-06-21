@@ -20,7 +20,7 @@ variables:
   dockerRegistryServiceConnection: '0d5bd8b0-1c68-419f-a77d-1fe7d58875ea'
   imageRepository: 'shoppingapi'
   containerRegistry: 'shoppingapppacr.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
+  dockerfilePath: 'Shopping/Shopping.API/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'shoppingapppacr1317335c-auth'
 
