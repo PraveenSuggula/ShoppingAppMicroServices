@@ -40,7 +40,7 @@ namespace Shopping.API.Data
                 new Product()
             {
                 Name = "OPPO f3 Plus",
-                Description = "This phone is the company's biggest change to its flagship smartphone in 2020",
+                Description = "This phone is the company's biggest change to its flagship smartphone in 2023",
                 ImageFile = "product-1.png",
                 Price = 24567.00M,
                 Category = "Smart Phone"
