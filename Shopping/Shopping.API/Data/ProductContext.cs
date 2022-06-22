@@ -10,28 +10,23 @@ namespace Shopping.API.Data
 {
     public class ProductContext
     {
+        public IMongoCollection<Product> Products { get; }
         public ProductContext(IConfiguration configuration)
         {
             //var coindesk= new 
             var client = new MongoClient(configuration["DatabaseSettings:ConnectionString"]);
             var database = client.GetDatabase(configuration["DatabaseSettings:DatabaseName"]);
             Products = database.GetCollection<Product>(configuration["DatabaseSettings:CollectionName"]);
-            SeedData(Products);
+            bool existProduct = Products.Find(p => true).Any();
+            if (!existProduct)
+            {
+                SeedData(Products);
+            }
         }
-        public IMongoCollection<Product> Products { get; }
 
         public static void SeedData(IMongoCollection<Product> productCollection)
         {
-            bool existProduct = productCollection.Find(p=> true).Any();
-            if (existProduct)
-            {
-                productCollection.DeleteManyAsync(prop => true);
-                productCollection.InsertManyAsync(GetPreConfiguredProducts());
-            }
-            else
-            {
-                productCollection.InsertManyAsync(GetPreConfiguredProducts());
-            }
+           productCollection.InsertManyAsync(GetPreConfiguredProducts());
         }
         public static IEnumerable<Product> GetPreConfiguredProducts()
         {
